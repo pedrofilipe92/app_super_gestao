@@ -30,8 +30,12 @@ Route::get('/', 'PrincipalController@principal');
 
 Route::get('/sobre-nos', 'SobreNosController@sobreNos');
 
-Route::get('contato', 'ContatoController@contato');
-
+Route::get('/contato', 'ContatoController@contato');
+// passando parametros pela url
+Route::get('/contato/{nome}/{categoria}/{assunto}/{mensagem}', 
+    function(string $nome, string $categoria, string $assunto, string $mensagem) {
+        echo 'nome: '. $nome . '<br>categoria: ' . $categoria . '<br>assunto: ' . $assunto . '<br>mensagem: ' . $mensagem;
+    });
 
 // verbos http
 // get
