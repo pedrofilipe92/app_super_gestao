@@ -38,13 +38,13 @@ Route::get('/contato', 'ContatoController@contato');
 //     });
 
 // tratando tipos de parametros com expressõe regulares
-Route::get('/contato/{nome}/{categoria_id?}', function(string $nome, int $categoria_id = 1) {
-    echo "$nome e $categoria_id";
-})
-    // categoria_id entre 0 e 9 e pelo menos 1 parametro enviado
-    ->where('categoria_id', '[0-9]+')
-    // nome caractere entre A e Z ou a e z e pelo menos 1 parametro enviado
-    ->where('nome', '[A-Za-z]+');
+// Route::get('/contato/{nome}/{categoria_id?}', function(string $nome, int $categoria_id = 1) {
+//     echo "$nome e $categoria_id";
+// })
+//     // categoria_id entre 0 e 9 e pelo menos 1 parametro enviado
+//     ->where('categoria_id', '[0-9]+')
+//     // nome caractere entre A e Z ou a e z e pelo menos 1 parametro enviado
+//     ->where('nome', '[A-Za-z]+');
 
 // verbos http
 // get
