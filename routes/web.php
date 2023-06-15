@@ -32,10 +32,19 @@ Route::get('/sobre-nos', 'SobreNosController@sobreNos');
 
 Route::get('/contato', 'ContatoController@contato');
 // passando parametros pela url
-Route::get('/contato/{nome?}/{categoria?}/{assunto?}/{mensagem?}', 
-    function(string $nome = '', string $categoria = '', string $assunto = '', string $mensagem = '') {
-        echo 'nome: '. $nome . '<br>categoria: ' . $categoria . '<br>assunto: ' . $assunto . '<br>mensagem: ' . $mensagem;
-    });
+// Route::get('/contato/{nome?}/{categoria?}/{assunto?}/{mensagem?}', 
+//     function(string $nome = '', string $categoria = '', string $assunto = '', string $mensagem = '') {
+//         echo 'nome: '. $nome . '<br>categoria: ' . $categoria . '<br>assunto: ' . $assunto . '<br>mensagem: ' . $mensagem;
+//     });
+
+// tratando tipos de parametros com expressõe regulares
+Route::get('/contato/{nome}/{categoria_id?}', function(string $nome, int $categoria_id = 1) {
+    echo "$nome e $categoria_id";
+})
+    // categoria_id entre 0 e 9 e pelo menos 1 parametro enviado
+    ->where('categoria_id', '[0-9]+')
+    // nome caractere entre A e Z ou a e z e pelo menos 1 parametro enviado
+    ->where('nome', '[A-Za-z]+');
 
 // verbos http
 // get
