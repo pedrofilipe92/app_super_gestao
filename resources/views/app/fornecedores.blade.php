@@ -1,6 +1,6 @@
-<h3>produtos view</h3>
+<h3>fornecedores view</h3>
 
-<ul>
+<!-- <ul>
     <li>
         <a href="/">Home</a>
     </li>
@@ -19,4 +19,4 @@
     <li>
         <a href="/produtos">produtos</a>
     </li>
-</ul>
+</ul> -->

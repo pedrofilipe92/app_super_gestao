@@ -26,19 +26,19 @@ use Illuminate\Support\Facades\Route;
 //     return 'Contato';
 // });
 
-Route::get('/', 'PrincipalController@principal');
+Route::get('/', 'PrincipalController@principal')->name('site.index');
 
-Route::get('/sobre-nos', 'SobreNosController@sobreNos');
+Route::get('/sobre-nos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 
-Route::get('/contato', 'ContatoController@contato');
+Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 
-Route::get('/login', 'LoginController@login');
+Route::get('/login', 'LoginController@login')->name('site.login');
 
 // agrupando rotas
 Route::prefix('/app')->group(function() {
-    Route::get('/clientes', 'ClientesController@clientes');
-    Route::get('/fornecedores', 'FornecedoresController@fornecedores');
-    Route::get('/produtos', 'ProdutosController@produtos');
+    Route::get('/clientes', 'ClientesController@clientes')->name('app.clientes');
+    Route::get('/fornecedores', 'FornecedoresController@fornecedores')->name('app.fornecedores');
+    Route::get('/produtos', 'ProdutosController@produtos')->name('app.produtos');
 });
 
 // passando parametros pela url
