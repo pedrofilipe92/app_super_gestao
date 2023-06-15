@@ -31,6 +31,16 @@ Route::get('/', 'PrincipalController@principal');
 Route::get('/sobre-nos', 'SobreNosController@sobreNos');
 
 Route::get('/contato', 'ContatoController@contato');
+
+Route::get('/login', 'LoginController@login');
+
+// agrupando rotas
+Route::prefix('/app')->group(function() {
+    Route::get('/clientes', 'ClientesController@clientes');
+    Route::get('/fornecedores', 'FornecedoresController@fornecedores');
+    Route::get('/produtos', 'ProdutosController@produtos');
+});
+
 // passando parametros pela url
 // Route::get('/contato/{nome?}/{categoria?}/{assunto?}/{mensagem?}', 
 //     function(string $nome = '', string $categoria = '', string $assunto = '', string $mensagem = '') {

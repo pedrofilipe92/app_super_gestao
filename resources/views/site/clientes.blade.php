@@ -1,4 +1,4 @@
-<h3>index view</h3>
+<h3>clientes view</h3>
 
 <ul>
     <li>
