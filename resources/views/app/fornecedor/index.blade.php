@@ -29,3 +29,7 @@
         <p>{{ $fornecedores[0]['cnpj'] }}</p>
     @endisset
 @endisset
+
+@empty($fornecedores)
+    <p>array vazio</p>
+@endempty
