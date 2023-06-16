@@ -30,6 +30,16 @@
     @endisset
 @endisset
 
+{{-- verifica se a variavel está vazia --}}
+{{-- '', 0, 0.0, '0', false, null, array(), $var --}}
 @empty($fornecedores)
     <p>array vazio</p>
 @endempty
+
+{{-- if ternario com valor default --}}
+{{-- se a variavel não estiver definida ou possui valor null --}}
+@isset($fornecedores)
+    <p>{{ $fornecedores[1]['nome'] ?? ''}}</p>
+    <p>{{ $fornecedores[1]['status'] ?? ''}}</p>
+    <p>{{ $fornecedores[1]['cnpj'] ?? ''}}</p>
+@endisset

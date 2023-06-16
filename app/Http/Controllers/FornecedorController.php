@@ -15,9 +15,12 @@ class FornecedorController extends Controller
             ],
             1 => [
                     'nome' => 'forn2',
-                    'status' => 'inativo'
+                    'status' => 'inativo',
             ]
         ];
+
+        // if ternario
+        // isset($fornecedores[1]['cnpj']) ? dd('set') : dd('unset');
 
         return view('app.fornecedor.index', compact('fornecedores'));
     }
