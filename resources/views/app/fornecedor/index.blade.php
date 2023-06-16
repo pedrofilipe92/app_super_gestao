@@ -72,3 +72,9 @@
     @endswitch
     <hr>
 @endfor
+
+@php $j = 0 @endphp
+@while(isset($fornecedores[$j]))
+    <p>testando while {{ $fornecedores[$j]['nome'] }}</p>
+    @php $j++ @endphp
+@endwhile
