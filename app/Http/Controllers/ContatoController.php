@@ -8,7 +8,9 @@ class ContatoController extends Controller
 {
     public function contato() {
         // utilizando a super global get para recuperar os dados do front
-        var_dump($_GET);
+        // var_dump($_GET);
+        // utilizando a super global post para recuperar os dados do front
+        var_dump($_POST);
         return view('site.contato');
     }
 }

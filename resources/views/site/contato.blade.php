@@ -13,7 +13,10 @@
         <div class="contato-principal">
             {{-- enviando dados do formulario --}}
             {{-- method get envia os dados pela url --}}
-            <form action={{ route("site.contato") }} method="get">
+            {{-- <form action={{ route("site.contato") }} method="get"> --}}
+            <form action={{ route("site.contato") }} method="post">
+                {{-- method post precisa do token --}}
+                @csrf
                 <input name="nome" type="text" placeholder="Nome" class="borda-preta">
                 <br>
                 <input name="telefone" type="text" placeholder="Telefone" class="borda-preta">
