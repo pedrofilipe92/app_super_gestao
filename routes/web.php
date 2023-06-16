@@ -34,6 +34,9 @@ Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 
 Route::get('/login', 'LoginController@login')->name('site.login');
 
+// passando parametros para o controller e para a view
+Route::get('/teste/{nome}/{email}', 'TesteController@teste')->name('site.teste');
+
 // agrupando rotas
 Route::prefix('/app')->group(function() {
     Route::get('/clientes', 'ClientesController@clientes')->name('app.clientes');
@@ -41,16 +44,16 @@ Route::prefix('/app')->group(function() {
     Route::get('/produtos', 'ProdutosController@produtos')->name('app.produtos');
 });
 
-// redirecionamento de rotas
-Route::get('/rota1', function() {
-    echo 'rota1';
-})->name('site.rota1');
-// pode ser feito assim
-Route::get('/rota2', function() {
-    return redirect()->route('site.rota1');
-})->name('site.rota2');
-// ou assim
-// Route::redirect('/rota2', '/rota1');
+// // redirecionamento de rotas
+// Route::get('/rota1', function() {
+//     echo 'rota1';
+// })->name('site.rota1');
+// // pode ser feito assim
+// Route::get('/rota2', function() {
+//     return redirect()->route('site.rota1');
+// })->name('site.rota2');
+// // ou assim
+// // Route::redirect('/rota2', '/rota1');
 
 // rota de contigencia (fallback)
 Route::fallback(function() {
