@@ -82,3 +82,9 @@
 @foreach ($fornecedores as $fornecedor)
     <p>testando foreach {{ $fornecedor['telefone'] }}</p>
 @endforeach
+
+@forelse ($fornecedores as $fornecedor)
+    <p>teste forelse {{ $fornecedor['ddd'] }}</p>
+@empty
+    <p>não existem fornecedores</p>
+@endforelse
