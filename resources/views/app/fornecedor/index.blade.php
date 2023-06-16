@@ -39,7 +39,18 @@
 {{-- if ternario com valor default --}}
 {{-- se a variavel não estiver definida ou possui valor null --}}
 @isset($fornecedores)
-    <p>{{ $fornecedores[1]['nome'] ?? ''}}</p>
-    <p>{{ $fornecedores[1]['status'] ?? ''}}</p>
-    <p>{{ $fornecedores[1]['cnpj'] ?? ''}}</p>
+    <p>Fornecedor: {{ $fornecedores[1]['nome'] ?? ''}}</p>
+    <p>Status: {{ $fornecedores[1]['status'] ?? ''}}</p>
+    <p>Cnpj: {{ $fornecedores[1]['cnpj'] ?? ''}}</p>
+    <p>Telefone: ({{ $fornecedores[1]['ddd'] ?? '' }}) {{ $fornecedores[1]['telefone'] ?? ''}}</p>
+    @switch($fornecedores[1]['ddd'])
+        @case('21')
+            <p>São Paulo</p>
+            @break
+        @case('71')
+            <p>Salvador</p>
+            @break
+        @default
+            <p>{{ $fornecedores[1]['ddd'] }}</p>
+    @endswitch
 @endisset
