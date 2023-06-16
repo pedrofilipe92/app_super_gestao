@@ -80,7 +80,17 @@
 @endwhile
 
 @foreach ($fornecedores as $fornecedor)
+    {{-- objeto loop --}}
+    {{-- só pode ser usado com foreach ou forelse --}}
+    Iteração {{ $loop->iteration }}
+    @if($loop->first)
+        primeira
+    @endif
     <p>testando foreach {{ $fornecedor['telefone'] }}</p>
+    @if($loop->last)
+        ultima
+        total {{ $loop->count }}
+    @endif
 @endforeach
 
 @forelse ($fornecedores as $fornecedor)
