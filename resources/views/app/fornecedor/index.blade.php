@@ -78,3 +78,7 @@
     <p>testando while {{ $fornecedores[$j]['nome'] }}</p>
     @php $j++ @endphp
 @endwhile
+
+@foreach ($fornecedores as $fornecedor)
+    <p>testando foreach {{ $fornecedor['telefone'] }}</p>
+@endforeach
