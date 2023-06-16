@@ -11,8 +11,9 @@
 
     <div class="informacao-pagina">
         <div class="contato-principal">
-            @component('site.layouts._components.form_contato')
-                
+            @component('site.layouts._components.form_contato', ['classe' => 'borda-preta'])
+                {{-- envio dos parametros --}}
+                <p>mensagem de retorno</p>
             @endcomponent
         </div>
     </div>  
