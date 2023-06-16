@@ -11,3 +11,21 @@
 @else
     <p>não existem fornecedores cadastrados</p>
 @endif
+
+{{-- inversão do if --}}
+@unless(count($fornecedores) > 0)
+    <p>não existem fornecedores cadastrados</p>
+@endunless
+
+{{-- verificar se a variavél foi definida --}}
+@isset($fornecedores)
+    @isset($fornecedores[0]['nome'])
+        <p>{{ $fornecedores[0]['nome'] }}</p>
+    @endisset
+    @isset($fornecedores[0]['status'])
+        <p>{{ $fornecedores[0]['status'] }}</p>
+    @endisset
+    @isset($fornecedores[0]['cnpj'])
+        <p>{{ $fornecedores[0]['cnpj'] }}</p>
+    @endisset
+@endisset
