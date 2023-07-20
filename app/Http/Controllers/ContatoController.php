@@ -52,7 +52,7 @@ class ContatoController extends Controller
             // validando caracteres min e max
             'nome' => 'required|min:3|max:40',
             'telefone' => 'required',
-            'email' => 'required',
+            'email' => 'email',
             'motivo_contato' => 'required',
             'mensagem' => 'required|max:2000'
         ]);
