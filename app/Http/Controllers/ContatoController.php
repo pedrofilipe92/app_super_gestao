@@ -51,7 +51,8 @@ class ContatoController extends Controller
         $request->validate([
             // validando caracteres min e max
             'nome' => 'required|min:3|max:40',
-            'telefone' => 'required',
+            // validando dados unicos
+            'telefone' => 'required|unique:site_contatos',
             'email' => 'email',
             'motivo_contatos_id' => 'required',
             'mensagem' => 'required|max:2000'
