@@ -46,12 +46,14 @@ class ContatoController extends Controller
     public function create(Request $request) {
         // validando campos obrigatórios
         $request->validate([
-            'nome' => 'required',
+            // validando caracteres min e max
+            'nome' => 'required|min:3|max:40',
             'telefone' => 'required',
             'email' => 'required',
             'motivo_contato' => 'required',
-            'mensagem' => 'required'
+            'mensagem' => 'required|max:2000'
         ]);
         SiteContato::create($request->all());
+        echo 'contato salvo com sucesso';
     }
 }
