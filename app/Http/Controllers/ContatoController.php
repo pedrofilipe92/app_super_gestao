@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SiteContato;
 
 class ContatoController extends Controller
 {
@@ -12,12 +13,34 @@ class ContatoController extends Controller
         // utilizando a super global post para recuperar os dados do front
         // var_dump($_POST);
 
-        echo '<pre>';
-        // recupera todo o conteudo
-        print_r($request->all());
-        echo '</pre>';
-        // recupera o atributo desejado
-        echo $request->input('telefone');
+        // echo '<pre>';
+        // // recupera todo o conteudo
+        // print_r($request->all());
+        // echo '</pre>';
+        // // recupera o atributo desejado
+        // echo $request->input('telefone');
+
+        // enviando os dados para o banco
+        $contato = new SiteContato;
+
+        // preenchendo campo a campo
+        // $contato->nome = $request->input('nome');
+        // $contato->telefone = $request->input('telefone');
+        // $contato->email = $request->input('email');
+        // $contato->motivo_contato = $request->input('motivo_contato');
+        // $contato->mensagem = $request->input('mensagem');
+
+        // preenchendo usando o create
+        // $contato->create($request->all());
+
+        // preenchendo usando o fill
+        // deve ter os campos definidos no fillable
+        $contato->fill($request->all());
+
+        $contato->save();
+
+
+
         return view('site.contato');
     }
 }
