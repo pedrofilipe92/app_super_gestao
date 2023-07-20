@@ -21,7 +21,7 @@ class ContatoController extends Controller
         // echo $request->input('telefone');
 
         // enviando os dados para o banco
-        $contato = new SiteContato;
+        // $contato = new SiteContato;
 
         // preenchendo campo a campo
         // $contato->nome = $request->input('nome');
@@ -31,16 +31,27 @@ class ContatoController extends Controller
         // $contato->mensagem = $request->input('mensagem');
 
         // preenchendo usando o create
+        // deve ter os campos definidos no fillable
         // $contato->create($request->all());
 
         // preenchendo usando o fill
         // deve ter os campos definidos no fillable
-        $contato->fill($request->all());
+        // $contato->fill($request->all());
 
-        $contato->save();
-
-
+        // $contato->save();
 
         return view('site.contato');
+    }
+
+    public function create(Request $request) {
+        // validando campos obrigatórios
+        $request->validate([
+            'nome' => 'required',
+            'telefone' => 'required',
+            'email' => 'required',
+            'motivo_contato' => 'required',
+            'mensagem' => 'required'
+        ]);
+        SiteContato::create($request->all());
     }
 }

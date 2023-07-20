@@ -13,7 +13,7 @@
     <input name="email" type="text" placeholder="E-mail" class="{{ $classe }}">
     <br>
     <select name="motivo_contato" class="{{ $classe }}">
-        <option value="0">Qual o motivo do contato?</option>
+        <option value="">Qual o motivo do contato?</option>
         <option value="1">Dúvida</option>
         <option value="2">Elogio</option>
         <option value="3">Reclamação</option>
@@ -23,3 +23,10 @@
     <br>
     <button type="submit" class="{{ $classe }}">ENVIAR</button>
 </form>
+
+{{-- tratando os erros no front --}}
+<div style="position:absolute; top:0px; left:0px; width:100%; background:red">
+    <pre>
+        {{ print_r($errors) }}
+    </pre>
+</div>
