@@ -15,17 +15,24 @@ class AutenticacaoMiddleware
      */
     public function handle($request, Closure $next, $metodo_autenticacao, $perfil)
     {
-        // passando parametros para a middleware
-        if ($metodo_autenticacao == 'padrao') {
-            echo $perfil;
-            // verifica se o usuario tem acesso a rota
-            if($request->server->get('REMOTE_ADDR') == '127.0.0.1') {
-                return $next($request);
-            } else {
-                return Response('negado');
-            }
+        // // passando parametros para a middleware
+        // if ($metodo_autenticacao == 'padrao') {
+        //     echo $perfil;
+        //     // verifica se o usuario tem acesso a rota
+        //     if($request->server->get('REMOTE_ADDR') == '127.0.0.1') {
+        //         return $next($request);
+        //     } else {
+        //         return Response('negado');
+        //     }
+        // } else {
+        //     return Response('outro metodo');
+        // }
+
+        session_start();
+        if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
+            return $next($request);
         } else {
-            return Response('outro metodo');
+            return redirect()->route('site.login', ['erro' => 2]);
         }
     }
 }

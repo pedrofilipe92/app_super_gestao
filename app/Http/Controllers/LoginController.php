@@ -13,6 +13,9 @@ class LoginController extends Controller
         if($request->get('erro') == 1) {
             $erro = 'Usuário ou senha incorreto.';            
         }
+        if ($request->get('erro') == 2) {
+            $erro = 'Necessário login para acessar a página.';
+        }
 
         return view('site.login', ['titulo' => 'Login', 'erro' => $erro]);
     }
@@ -34,8 +37,12 @@ class LoginController extends Controller
 
         $user = User::where('email', $email)->where('password', $password)->get()->first();
 
-        if($user) {
-            return redirect()->route('site.index');
+        if(isset($user->name)) {
+            session_start();
+            $_SESSION['nome'] = $user->name;
+            $_SESSION['email'] = $user->email;
+            
+            return redirect()->route('app.clientes');
         } else {
             return redirect()->route('site.login', ['erro' => 1]);
         }
