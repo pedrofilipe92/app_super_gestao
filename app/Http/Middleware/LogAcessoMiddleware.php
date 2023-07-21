@@ -19,7 +19,11 @@ class LogAcessoMiddleware
         $ip = $request->server->get('REMOTE_ADDR');
         $rota = $request->getRequestUri();
         LogAcesso::create(['log' => "$ip request da rota $rota"]);
-        return $next($request);
-        // return Response('ok');
+
+        // manipulando a resposta das requisições
+        $resposta = $next($request);
+        // setStatusCode({statusCode}, {statusText})
+        $resposta->setStatusCode(201, 'mudou');
+        return $resposta;
     }
 }
