@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -21,6 +22,14 @@ class LoginController extends Controller
             'required' => 'Campo :attribute é obrigatório.'
         ];
         $request->validate($regras, $mensagens);
-        print_r($request->all());
+
+        $email = $request->get('usuario');
+        $password = $request->get('senha');
+
+        $user = User::where('email', $email)->where('password', $password)->get()->first();
+
+        if($user->name) {
+            return redirect()->route('site.index');
+        }
     }
 }
