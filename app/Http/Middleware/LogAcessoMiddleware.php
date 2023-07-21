@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\LogAcesso;
 
 class LogAcessoMiddleware
 {
@@ -16,6 +17,10 @@ class LogAcessoMiddleware
     public function handle($request, Closure $next)
     {
         // return $next($request);
-        return Response($request);
+
+        $ip = $request->server->get('REMOTE_ADDR');
+        $rota = $request->getRequestUri();
+        LogAcesso::create(['log' => "$ip request da rota $rota"]);
+        return Response('ok');
     }
 }
