@@ -11,6 +11,16 @@ class LoginController extends Controller
     }
 
     public function autenticar(Request $request) {
-        return 'ok';
+        $regras = [
+            'usuario' => 'required|email',
+            'senha' => 'required'
+        ];
+
+        $mensagens = [
+            'usuario.email' => 'Insira um email válido.',
+            'required' => 'Campo :attribute é obrigatório.'
+        ];
+        $request->validate($regras, $mensagens);
+        print_r($request->all());
     }
 }
