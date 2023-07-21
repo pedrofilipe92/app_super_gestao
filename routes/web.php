@@ -30,6 +30,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PrincipalController@principal')->name('site.index');
 // implementeando middlewares na rota
 // Route::middleware(LogAcessoMiddleware::class)->get('/', 'PrincipalController@principal')->name('site.index');
+// implementando apelidos para middlewares
+// Route::middleware('log.acesso')->get('/', 'PrincipalController@principal')->name('site.index');
 
 Route::get('/sobre-nos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 
