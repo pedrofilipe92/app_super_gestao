@@ -45,7 +45,7 @@ Route::get('/teste/{nome}/{email}', 'TesteController@teste')->name('site.teste')
 
 // agrupando rotas
 // atribuindo middlewares para um grupo de rotas
-Route::middleware('autenticacao')->prefix('/app')->group(function() {
+Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function() {
     // encadeando middlewares
     // Route::middleware('log.acesso', 'autenticacao')->get('/clientes', 'ClientesController@clientes')->name('app.clientes');
     Route::get('/clientes', 'ClientesController@clientes')->name('app.clientes');

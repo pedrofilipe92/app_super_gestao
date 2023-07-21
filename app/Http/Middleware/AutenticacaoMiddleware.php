@@ -13,13 +13,19 @@ class AutenticacaoMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $metodo_autenticacao, $perfil)
     {
-        // verifica se o usuario tem acesso a rota
-        if($request->server->get('REMOTE_ADDR') == '127.0.0.1') {
-            return $next($request);
+        // passando parametros para a middleware
+        if ($metodo_autenticacao == 'padrao') {
+            echo $perfil;
+            // verifica se o usuario tem acesso a rota
+            if($request->server->get('REMOTE_ADDR') == '127.0.0.1') {
+                return $next($request);
+            } else {
+                return Response('negado');
+            }
         } else {
-            return Response('negado');
+            return Response('outro metodo');
         }
     }
 }
