@@ -45,9 +45,17 @@ Route::get('/teste/{nome}/{email}', 'TesteController@teste')->name('site.teste')
 
 // agrupando rotas
 Route::prefix('/app')->group(function() {
-    Route::get('/clientes', 'ClientesController@clientes')->name('app.clientes');
-    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
-    Route::get('/produtos', 'ProdutosController@produtos')->name('app.produtos');
+    // encadeando middlewares
+    // Route::middleware('log.acesso', 'autenticacao')->get('/clientes', 'ClientesController@clientes')->name('app.clientes');
+    Route::middleware('autenticacao')
+        ->get('/clientes', 'ClientesController@clientes')
+        ->name('app.clientes');
+    Route::middleware('autenticacao')
+        ->get('/fornecedores', 'FornecedorController@index')
+        ->name('app.fornecedores');
+    Route::middleware('autenticacao')
+        ->get('/produtos', 'ProdutosController@produtos')
+        ->name('app.produtos');
 });
 
 // // redirecionamento de rotas
