@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\LogAcessoMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,8 @@ use Illuminate\Support\Facades\Route;
 //     return 'Contato';
 // });
 
-Route::get('/', 'PrincipalController@principal')->name('site.index');
+// Route::get('/', 'PrincipalController@principal')->name('site.index');
+Route::middleware(LogAcessoMiddleware::class)->get('/', 'PrincipalController@principal')->name('site.index');
 
 Route::get('/sobre-nos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 
