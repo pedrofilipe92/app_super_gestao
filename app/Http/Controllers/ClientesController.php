@@ -8,6 +8,6 @@ class ClientesController extends Controller
 {
     public function clientes()
     {
-        return view('app.clientes');
+        return view('app.cliente');
     }
 }
