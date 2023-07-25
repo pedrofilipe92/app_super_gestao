@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class FornecedorController extends Controller
 {
     public function index() {
-        return view('app.fornecedor');
+        return view('app.fornecedor.index');
         // $fornecedores = [
         //     0 => [
         //             'nome'      => 'forn1',
@@ -36,5 +36,14 @@ class FornecedorController extends Controller
         // // isset($fornecedores[1]['cnpj']) ? dd('set') : dd('unset');
 
         // return view('app.fornecedor.index', compact('fornecedores'));
+    }
+
+    public function listar() {
+        return view('app.fornecedor.listar');
+    }
+
+    public function adicionar()
+    {
+        return view('app.fornecedor.adicionar');
     }
 }

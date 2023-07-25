@@ -46,12 +46,16 @@ Route::get('/teste/{nome}/{email}', 'TesteController@teste')->name('site.teste')
 
 // agrupando rotas
 // atribuindo middlewares para um grupo de rotas
-Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function() {
+Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group( function() {
     // encadeando middlewares
     // Route::middleware('log.acesso', 'autenticacao')->get('/clientes', 'ClientesController@clientes')->name('app.clientes');
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/cliente', 'ClientesController@clientes')->name('app.cliente');
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
+    Route::prefix('/fornecedor')->group( function() {
+        Route::post('/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
+        Route::get('/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
+    });
     Route::get('/produto', 'ProdutosController@produtos')->name('app.produto');
     Route::get('/sair', 'LoginController@sair')->name('app.sair');
 });
