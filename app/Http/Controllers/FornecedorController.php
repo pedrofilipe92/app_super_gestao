@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Fornecedor;
 
 class FornecedorController extends Controller
 {
@@ -42,8 +43,30 @@ class FornecedorController extends Controller
         return view('app.fornecedor.listar');
     }
 
-    public function adicionar()
+    public function adicionar(Request $request)
     {
-        return view('app.fornecedor.adicionar');
+        $sucesso = '';
+
+        if($request->input('_token') != '') {
+            $regras = [
+                'nome'  => 'required|min:3|max:40',
+                'site'  => 'required',
+                'uf'    => 'required|min:2|max:2',
+                'email' => 'email'
+            ];
+            $mensagens = [
+                'required'  => 'O campo :attribute é obrigatório.',
+                'min'       => 'O campo :attribute precisa ter no mínimo :min caracteres.',
+                'max'       => 'O campo :attribute precisa ter no máximo :max caracteres.',
+                'email'     => 'Insira um email válido.'
+            ];
+    
+            $request->validate($regras, $mensagens);
+    
+            Fornecedor::create($request->all());
+            $sucesso = 'Cadastro realizado com sucesso.';
+        }
+
+        return view('app.fornecedor.adicionar', ['sucesso' => $sucesso]);
     }
 }
