@@ -102,4 +102,13 @@ class FornecedorController extends Controller
 
         return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'sucesso' => $sucesso]);
     }
+
+    public function excluir($id)
+    {
+        // preenche campo deleted_at
+        Fornecedor::find($id)->delete();
+        // força a exclusão do registro
+        // Fornecedor::find($id)->forceDelete();
+        return redirect()->route('app.fornecedor');
+    }
 }
