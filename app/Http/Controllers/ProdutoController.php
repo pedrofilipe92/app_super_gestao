@@ -12,10 +12,15 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        echo 'index';
-    //    return view('app.produto');
+        // where('nome', 'like', '')
+        // ->where('descricao', 'like', '')
+        // ->where('peso', 'like', '')
+        // ->
+        $produtos = Produto::paginate(5);
+        
+        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request]);
     }
 
     /**
@@ -58,7 +63,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        dd($produto);
     }
 
     /**
@@ -81,6 +86,6 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        dd($produto);
     }
 }
