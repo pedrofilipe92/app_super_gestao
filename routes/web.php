@@ -60,7 +60,9 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group( funct
         Route::get('/editar/{id}/{sucesso?}', 'FornecedorController@editar')->name('app.fornecedor.editar');
         Route::get('/excluir/{id}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
     });
-    Route::get('/produto', 'ProdutosController@produtos')->name('app.produto');
+    // Route::get('/produto', 'ProdutoController@produtos')->name('app.produto');
+    // criando rotas automaticamente com o resource
+    Route::resource('/produto', 'ProdutoController');
     Route::get('/sair', 'LoginController@sair')->name('app.sair');
 });
 
