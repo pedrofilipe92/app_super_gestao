@@ -19,6 +19,7 @@
         </div>
         <div class="informacao-pagina">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
+                {{ $sucesso ?? '' }}
                 <table border="1" width="100%">
                     <thead>
                         <tr>
