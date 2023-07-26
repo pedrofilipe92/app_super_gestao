@@ -19,7 +19,7 @@ class ProdutoController extends Controller
         // ->where('descricao', 'like', '')
         // ->where('peso', 'like', '')
         // ->
-        $produtos = Produto::paginate(5);
+        $produtos = Produto::paginate(10);
         
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request]);
     }
@@ -128,6 +128,7 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        dd($produto);
+        $produto->delete();
+        return redirect()->route('produto.index');
     }
 }
