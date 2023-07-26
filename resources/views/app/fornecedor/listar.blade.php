@@ -43,6 +43,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{-- recupera os parametros da requisição para a paginação --}}
+                {{ $fornecedores->appends($request)->links() }}
             </div>
         </div>
     </div>

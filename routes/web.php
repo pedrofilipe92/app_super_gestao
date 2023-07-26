@@ -54,6 +54,7 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group( funct
     Route::prefix('/fornecedor')->group( function() {
         Route::get('/', 'FornecedorController@index')->name('app.fornecedor');
         Route::post('/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
+        Route::get('/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
         Route::get('/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
         Route::post('/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
         Route::get('/editar/{id}/{sucesso?}', 'FornecedorController@editar')->name('app.fornecedor.editar');
