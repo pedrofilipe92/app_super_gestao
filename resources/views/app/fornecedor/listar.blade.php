@@ -45,6 +45,15 @@
                 </table>
                 {{-- recupera os parametros da requisição para a paginação --}}
                 {{ $fornecedores->appends($request)->links() }}
+                <br>
+                {{-- {{ $fornecedores->count() }} - Registros por página
+                <br>
+                {{ $fornecedores->total() }} - Total de registros
+                <br>
+                {{ $fornecedores->firstItem() }} - Primeiro registro da página
+                <br>
+                {{ $fornecedores->lastItem() }} - Último registro da página --}}
+                Exibindo {{ $fornecedores->count() }} fornecedor(es) de {{ $fornecedores->total() }} (de {{ $fornecedores->firstItem() }} a {{ $fornecedores->lastItem() }}).
             </div>
         </div>
     </div>
