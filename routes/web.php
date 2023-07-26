@@ -51,8 +51,8 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group( funct
     // Route::middleware('log.acesso', 'autenticacao')->get('/clientes', 'ClientesController@clientes')->name('app.clientes');
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/cliente', 'ClientesController@clientes')->name('app.cliente');
-    Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
     Route::prefix('/fornecedor')->group( function() {
+        Route::get('/', 'FornecedorController@index')->name('app.fornecedor');
         Route::post('/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
         Route::get('/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
         Route::post('/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
