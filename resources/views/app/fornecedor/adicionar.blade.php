@@ -19,22 +19,23 @@
         </div>
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                {{ $sucesso }}
+                {{ $sucesso ?? '' }}
                 <form method="post" action="{{ route('app.fornecedor.adicionar') }}">
                     @csrf
-                    <input type="text" name="nome" value="{{ old('nome') }}" placeholder="Nome" class="borda-preta">
+                    <input type="hidden" name="id" value="{{ $fornecedor->id ?? '' }}">
+                    <input type="text" name="nome" value="{{ $fornecedor->nome ?? old('nome') }}" placeholder="Nome" class="borda-preta">
                     @if($errors->has('nome'))
                         {{ $errors->first('nome') }}
                     @endif
-                    <input type="text" name="site" value="{{ old('site') }}" placeholder="Site" class="borda-preta">
+                    <input type="text" name="site" value="{{ $fornecedor->site ?? old('site') }}" placeholder="Site" class="borda-preta">
                     @if($errors->has('site'))
                         {{ $errors->first('site') }}
                     @endif
-                    <input type="text" name="uf" value="{{ old('uf') }}" placeholder="UF" class="borda-preta">
+                    <input type="text" name="uf" value="{{ $fornecedor->uf ?? old('uf') }}" placeholder="UF" class="borda-preta">
                     @if($errors->has('uf'))
                         {{ $errors->first('uf') }}
                     @endif
-                    <input type="text" name="email" value="{{ old('email') }}" placeholder="Email" class="borda-preta">
+                    <input type="text" name="email" value="{{ $fornecedor->email ?? old('email') }}" placeholder="Email" class="borda-preta">
                     @if($errors->has('email'))
                         {{ $errors->first('email') }}
                     @endif

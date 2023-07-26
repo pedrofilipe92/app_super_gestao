@@ -53,7 +53,8 @@ class FornecedorController extends Controller
     {
         $sucesso = '';
 
-        if($request->input('_token') != '') {
+        // novo registro
+        if($request->input('_token') != '' && $request->input('id') == '') {
             $regras = [
                 'nome'  => 'required|min:3|max:40',
                 'site'  => 'required',
@@ -73,6 +74,22 @@ class FornecedorController extends Controller
             $sucesso = 'Cadastro realizado com sucesso.';
         }
 
+        // editando registro
+        if ($request->input('_token') != '' && $request->input('id') != '') {
+
+            $fornecedor = Fornecedor::find($request->input('id'));
+            $fornecedor->update($request->all());
+            $sucesso = 'Cadastro alterado com sucesso.';
+
+            return redirect()->route('app.fornecedor.editar', ['id' => $request->input('id') , 'sucesso' => $sucesso]);
+        }
+
         return view('app.fornecedor.adicionar', ['sucesso' => $sucesso]);
+    }
+
+    public function editar($id, $sucesso = '') {
+        $fornecedor = Fornecedor::find($id);
+
+        return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'sucesso' => $sucesso]);
     }
 }
