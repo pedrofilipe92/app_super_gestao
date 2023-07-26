@@ -100,7 +100,24 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        dd($produto);
+        $regras = [
+            'nome'          => 'required|min:3|max:40',
+            'descricao'     => 'max:200',
+            'peso'          => 'required|integer',
+            'unidade_id'    => 'exists:unidades,id'
+        ];
+        $mensagens = [
+            'required'  => 'O campo :attribute é obrigatório.',
+            'integer'   => 'O campo :attribute deve ser um inteiro.',
+            'min'       => 'O campo :attribute deve ter no mínimo :min caracteres.',
+            'max'       => 'O campo :attribute deve ter no máximo :max caracteres.',
+            'exists'    => 'Unidade não cadastrada.'
+        ];
+
+        $request->validate($regras, $mensagens);
+
+        $produto->update($request->all());
+        return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
     /**

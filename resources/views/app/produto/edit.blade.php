@@ -20,8 +20,9 @@
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
                 {{ $sucesso ?? '' }}
-                <form method="put" action="{{ route('produto.update', ['produto' => $produto]) }}">
+                <form method="post" action="{{ route('produto.update', ['produto' => $produto->id]) }}">
                     @csrf
+                    @method('PUT')
                     <input type="hidden" name="id" value="{{ $produto->id ?? '' }}">
                     <input type="text" name="nome" value="{{ $produto->nome ?? old('nome') }}" placeholder="Nome" class="borda-preta">
                     @if($errors->has('nome'))
