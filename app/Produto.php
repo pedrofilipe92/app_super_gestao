@@ -12,4 +12,9 @@ class Produto extends Model
         'peso',
         'unidade_id'
     ];
+
+    // implementando o relacionamento com ProdutoDetalhe
+    public function produtoDetalhe() {
+        return $this->hasOne('App\ProdutoDetalhe');
+    }
 }
