@@ -61,6 +61,8 @@ class ProdutoDetalheController extends Controller
      */
     public function edit(ProdutoDetalhe $produto_detalhe)
     {
+        // implementando eager loading no lado fraco do relacionamento
+        $produto_detalhe = ProdutoDetalhe::with(['produto'])->find($produto_detalhe->id);
         $unidades = Unidade::all();
         return view('app.produto_detalhe.edit', ['unidades' => $unidades, 'produto_detalhe' => $produto_detalhe]);
     }
