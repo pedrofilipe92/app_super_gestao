@@ -10,7 +10,8 @@ class Produto extends Model
         'nome',
         'descricao',
         'peso',
-        'unidade_id'
+        'unidade_id',
+        'fornecedor_id'
     ];
 
     // implementando o relacionamento com ProdutoDetalhe

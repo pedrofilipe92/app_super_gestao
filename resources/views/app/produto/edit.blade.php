@@ -19,7 +19,7 @@
         </div>
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                @component('app.produto._components.form_create_edit', ['unidades' => $unidades, 'produto' => $produto])
+                @component('app.produto._components.form_create_edit', ['unidades' => $unidades, 'fornecedores' => $fornecedores, 'produto' => $produto])
                 @endcomponent
             </div>
         </div>

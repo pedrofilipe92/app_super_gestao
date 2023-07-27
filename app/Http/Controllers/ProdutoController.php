@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
-use App\ProdutoDetalhe;
+use App\Fornecedor;
 use App\Unidade;
 use Illuminate\Http\Request;
 
@@ -56,7 +56,8 @@ class ProdutoController extends Controller
         // rota produto.create
         // verbo http get
         $unidades = Unidade::all();
-        return view('app.produto.create', ['unidades' => $unidades]);
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.create', ['unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -77,14 +78,15 @@ class ProdutoController extends Controller
             'peso'          => 'required|integer',
             // precisa existir na tabela unidades
             // '<variavel>' => 'exists:<tabela>,<coluna>'
-            'unidade_id'    => 'exists:unidades,id'
+            'unidade_id'    => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
         ];
         $mensagens = [
             'required'  => 'O campo :attribute é obrigatório.',
             'integer'   => 'O campo :attribute deve ser um inteiro.',
             'min'       => 'O campo :attribute deve ter no mínimo :min caracteres.',
             'max'       => 'O campo :attribute deve ter no máximo :max caracteres.',
-            'exists'    => 'Unidade não cadastrada.'
+            'exists'    => ':attribute não cadastrado(a).'
         ];
 
         $request->validate($regras, $mensagens);
@@ -123,7 +125,8 @@ class ProdutoController extends Controller
         // rota produto.edit
         // verbo http get
         $unidades = Unidade::all();
-        return view('app.produto.edit', ['unidades' => $unidades], ['produto' => $produto]);
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.edit', ['unidades' => $unidades, 'fornecedores' => $fornecedores, 'produto' => $produto]);
         // return view('app.produto.create', ['unidades' => $unidades], ['produto' => $produto]);
     }
 
@@ -136,7 +139,7 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        // reveber formulário de edição do registro
+        // receber formulário de edição do registro
         // rota produto.update
         // verbo http put/patch
         // necessário implementar @method no formulário
@@ -144,14 +147,15 @@ class ProdutoController extends Controller
             'nome'          => 'required|min:3|max:40',
             'descricao'     => 'max:200',
             'peso'          => 'required|integer',
-            'unidade_id'    => 'exists:unidades,id'
+            'unidade_id'    => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
         ];
         $mensagens = [
             'required'  => 'O campo :attribute é obrigatório.',
             'integer'   => 'O campo :attribute deve ser um inteiro.',
             'min'       => 'O campo :attribute deve ter no mínimo :min caracteres.',
             'max'       => 'O campo :attribute deve ter no máximo :max caracteres.',
-            'exists'    => 'Unidade não cadastrada.'
+            'exists'    => ':attribute não cadastrado(a).'
         ];
 
         $request->validate($regras, $mensagens);
