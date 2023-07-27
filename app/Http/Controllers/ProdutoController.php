@@ -24,7 +24,10 @@ class ProdutoController extends Controller
         // necessário criar a view index
         // rota produto.index
         // verbo http get
-        $produtos = Produto::paginate(10);
+
+        // $produtos = Produto::paginate(10);
+        // realizando eager loading
+        $produtos = Produto::with('produtoDetalhe')->paginate(10);
 
         // trazendo ProdutoDetalhe
         // foreach($produtos as $key => $produto) {

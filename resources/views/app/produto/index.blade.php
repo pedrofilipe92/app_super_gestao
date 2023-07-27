@@ -19,7 +19,8 @@
         </div>
         <div class="informacao-pagina">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
-                {{ $sucesso ?? '' }}
+                {{-- imprimindo dados do produto antes da chamada do relacionamento --}}
+                {{-- {{ $produtos->toJson() }} --}}
                 <table border="1" width="100%">
                     <thead>
                         <tr>
@@ -73,6 +74,8 @@
                 <br>
                 Exibindo {{ $produtos->count() }} produto(s) de {{ $produtos->total() }} (de {{ $produtos->firstItem() }} a {{ $produtos->lastItem() }}).
             </div>
+            {{-- realizando lazy loading --}}
+            {{-- {{ $produtos->toJson() }} --}}
         </div>
     </div>
 @endsection
