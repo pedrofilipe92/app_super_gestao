@@ -107,8 +107,8 @@ class ProdutoController extends Controller
         // rota produto.edit
         // verbo http get
         $unidades = Unidade::all();
-        // return view('app.produto.edit', ['unidades' => $unidades], ['produto' => $produto]);
-        return view('app.produto.create', ['unidades' => $unidades], ['produto' => $produto]);
+        return view('app.produto.edit', ['unidades' => $unidades], ['produto' => $produto]);
+        // return view('app.produto.create', ['unidades' => $unidades], ['produto' => $produto]);
     }
 
     /**
