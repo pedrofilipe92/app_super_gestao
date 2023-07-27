@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
+    // crud completo utilizando o resource do artisan
+    // php artisan make:controller MeuController --resource
+    // necessário criação do model e da migration que podem ser feitos na mesma linha de comando ou separadamente
+
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +19,10 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        // where('nome', 'like', '')
-        // ->where('descricao', 'like', '')
-        // ->where('peso', 'like', '')
-        // ->
+        // exibir lista de registros
+        // necessário criar a view index
+        // rota produto.index
+        // verbo http get
         $produtos = Produto::paginate(10);
         
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request]);
@@ -31,6 +35,10 @@ class ProdutoController extends Controller
      */
     public function create()
     {
+        // exibir formulário de criação do registro
+        // necessário criar a view create
+        // rota produto.create
+        // verbo http get
         $unidades = Unidade::all();
         return view('app.produto.create', ['unidades' => $unidades]);
     }
@@ -43,6 +51,9 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        // receber formulário de criação do registro
+        // rota produto.store
+        // verbo http post
         $sucesso = '';
         $regras = [
             'nome'          => 'required|min:3|max:40',
@@ -76,6 +87,10 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
+        // exibir registro específico
+        // necessário criar a view show ou reaproveitar a index
+        // rota produto.show
+        // verbo http get
         return view('app.produto.show', ['produto' => $produto]);
     }
 
@@ -87,6 +102,10 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
+        // exibir formulário de edição do registro
+        // necessário criar a view edit ou reaproveitar a create
+        // rota produto.edit
+        // verbo http get
         $unidades = Unidade::all();
         return view('app.produto.edit', ['unidades' => $unidades], ['produto' => $produto]);
     }
@@ -100,6 +119,10 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
+        // reveber formulário de edição do registro
+        // rota produto.update
+        // verbo http put/patch
+        // necessário implementar @method no formulário
         $regras = [
             'nome'          => 'required|min:3|max:40',
             'descricao'     => 'max:200',
@@ -128,6 +151,10 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
+        // receber dados para remoção do registro
+        // rota produto.delete
+        // verbo http delete
+        // necessário implementar @method no formulário
         $produto->delete();
         return redirect()->route('produto.index');
     }
