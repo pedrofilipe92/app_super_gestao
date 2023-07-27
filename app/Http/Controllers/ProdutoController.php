@@ -26,8 +26,6 @@ class ProdutoController extends Controller
         // verbo http get
 
         // $produtos = Produto::paginate(10);
-        // realizando eager loading
-        $produtos = Produto::with('produtoDetalhe')->paginate(10);
 
         // trazendo ProdutoDetalhe
         // foreach($produtos as $key => $produto) {
@@ -39,6 +37,9 @@ class ProdutoController extends Controller
         //         $produtos[$key]['altura'] = $produto_detalhe->altura;
         //     }
         // }
+
+        // realizando eager loading
+        $produtos = Produto::with(['produtoDetalhe', 'fornecedor'])->paginate(10);
         
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request]);
     }
