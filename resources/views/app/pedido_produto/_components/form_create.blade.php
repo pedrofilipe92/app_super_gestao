@@ -8,6 +8,8 @@
                 {{ old('produto_id') == $produto->id ? 'selected' : ''}}
                 >{{ $produto->nome }}</option>
         @endforeach
+        <input type="number" name="quantidade" value="{{ old('quantidade') ?? '' }}" placeholder="Quantidade" class="borda-preta">
+        {{ $errors->has('quantidade') ? $errors->first('quantidade') : ''}}
     </select>
         {{ $errors->has('produto_id') ? $errors->first('produto_id') : ''}}
     <button type="submit" class="borda-preta">Cadastrar</button>

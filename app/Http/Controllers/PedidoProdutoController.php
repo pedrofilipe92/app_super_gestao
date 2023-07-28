@@ -45,16 +45,24 @@ class PedidoProdutoController extends Controller
         $regras = 
             [
                 'produto_id' => 'exists:produtos,id',
-                'pedido_id'  => 'exists:pedidos,id'
+                'pedido_id'  => 'exists:pedidos,id',
+                'quantidade' => 'required'
             ];
-        $mensagens = ['exists' => ':attribute não cadastrado.'];
+        $mensagens = ['exists' => ':attribute não cadastrado.', 'required' => ':attribute deve ser preenchido.'];
         $request->validate($regras, $mensagens);
 
-        PedidoProduto::create(
-            [
-                'produto_id' => $request->get('produto_id'),
-                'pedido_id' => $pedido->id
-            ]);
+        // PedidoProduto::create(
+        //     [
+        //         'produto_id'    => $request->get('produto_id'),
+        //         'pedido_id'     => $pedido->id,
+        //         'quantidade'    => $request->get('quantidade')
+        //     ]);
+
+        // fazendo a inclusão do PedidoProduto através do relacionamento
+        // $pedido->produtos()->attach('{id do produto}', '{array com as colunas e os valores a serem inseridos}');
+        $pedido->produtos()->attach($request->get('produto_id'), [
+            'quantidade' => $request->get('quantidade')
+        ]);
 
         return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
     }
