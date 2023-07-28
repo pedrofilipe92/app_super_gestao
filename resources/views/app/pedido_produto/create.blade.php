@@ -25,6 +25,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
+                            <th>Data inclusão do produto no pedido</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +33,8 @@
                             <tr>
                                 <td>{{ $produto->id ?? '' }}</td>
                                 <td>{{ $produto->nome ?? '' }}</td>
+                                {{-- imprimindo dados da coluna pivot --}}
+                                <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
