@@ -50,7 +50,6 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group( funct
     // encadeando middlewares
     // Route::middleware('log.acesso', 'autenticacao')->get('/clientes', 'ClientesController@clientes')->name('app.clientes');
     Route::get('/home', 'HomeController@index')->name('app.home');
-    Route::get('/cliente', 'ClientesController@clientes')->name('app.cliente');
     Route::prefix('/fornecedor')->group( function() {
         Route::get('/', 'FornecedorController@index')->name('app.fornecedor');
         Route::post('/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
@@ -62,6 +61,9 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group( funct
     });
     Route::resource('/produto', 'ProdutoController');
     Route::resource('/produto-detalhe', 'ProdutoDetalheController');
+    Route::resource('/cliente', 'ClienteController');
+    Route::resource('/pedido', 'PedidoController');
+    Route::resource('/pedido-produto', 'PedidoProdutoController');
     Route::get('/sair', 'LoginController@sair')->name('app.sair');
 });
 
