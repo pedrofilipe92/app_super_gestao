@@ -72,7 +72,7 @@
                     </tbody>
                 </table>
                 {{-- recupera os parametros da requisição para a paginação --}}
-                {{-- {{ $produtos->appends($request)->links() }} --}}
+                {{ $produtos->appends($request)->links() }}
                 <br>
                 Exibindo {{ $produtos->count() }} produto(s) de {{ $produtos->total() }} (de {{ $produtos->firstItem() }} a {{ $produtos->lastItem() }}).
             </div>

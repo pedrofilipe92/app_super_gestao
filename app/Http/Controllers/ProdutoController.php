@@ -41,7 +41,7 @@ class ProdutoController extends Controller
         // realizando eager loading
         $produtos = Produto::with(['produtoDetalhe', 'fornecedor'])->paginate(10);
         
-        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request]);
+        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
     /**
