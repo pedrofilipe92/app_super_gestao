@@ -66,7 +66,9 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group( funct
     // Route::resource('/pedido-produto', 'PedidoProdutoController');
     Route::get('pedido-produto/create/{pedido}', 'PedidoProdutoController@create')->name('pedido-produto.create');
     Route::post('pedido-produto/store/{pedido}', 'PedidoProdutoController@store')->name('pedido-produto.store');
-    Route::delete('pedido-produto/destroy/{pedido}/{produto}', 'PedidoProdutoController@destroy')->name('pedido-produto.destroy');
+    // fazendo exclusão através do relacionamento nxn
+    // Route::delete('pedido-produto/destroy/{pedido}/{produto}', 'PedidoProdutoController@destroy')->name('pedido-produto.destroy');
+    Route::delete('pedido-produto/destroy/{pedido_produto}/{pedido_id}', 'PedidoProdutoController@destroy')->name('pedido-produto.destroy');
     Route::get('/sair', 'LoginController@sair')->name('app.sair');
 });
 

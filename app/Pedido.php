@@ -13,6 +13,6 @@ class Pedido extends Model
         // return $this->belongsToMany('App\Produto', 'pedido_produtos');
 
         // trazendo colunas pivot pelo relacionamento
-        return $this->belongsToMany('App\Produto', 'pedido_produtos')->withPivot('created_at', 'updated_at');
+        return $this->belongsToMany('App\Produto', 'pedido_produtos')->withPivot('id', 'created_at', 'updated_at');
     }
 }

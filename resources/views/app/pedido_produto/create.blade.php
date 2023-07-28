@@ -37,7 +37,8 @@
                                 {{-- imprimindo dados da coluna pivot --}}
                                 <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
                                 <td>
-                                    <form
+                                    {{-- fazendo exclusão através do relacionamento nxn --}}
+                                    {{-- <form
                                         method="post"
                                         action="{{ route('pedido-produto.destroy', ['pedido' => $pedido->id, 'produto' => $produto->id]) }}"
                                         id="form_{{ $pedido->id }}_{{ $produto->id }}"
@@ -48,6 +49,21 @@
                                             href="#"
                                             onclick="document.getElementById('form_{{ $pedido->id }}_{{ $produto->id }}').submit()"
                                         >Excluir</a>
+                                    </form> --}}
+
+                                    <form
+                                        method="post"
+                                        action="{{ route('pedido-produto.destroy', ['pedido_produto' => $produto->pivot->id, 'pedido_id' => $pedido->id]) }}"
+                                        id="form_{{ $produto->pivot->id }}"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+                                            <a
+                                                href="#"
+                                                onclick="document.getElementById('form_{{ $produto->pivot->id }}').submit()"
+                                            >
+                                                Excluir
+                                            </a>
                                     </form>
                                 </td>
                             </tr>
